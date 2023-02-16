@@ -1,0 +1,15 @@
+<form method="post" action="/upload" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <select class="form-select" aria-label="Default select example" name="option">
+            {{#each folders}}
+                <option value="{{.}}">{{.}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="photo" class="form-label">File Uploads</label>
+        <input type="file" class="form-control" id="photo" name="photo" required-accept="image/*" multiple>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

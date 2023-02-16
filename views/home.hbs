@@ -1,0 +1,34 @@
+<h1 class="text-center mt-5">File Manager</h1>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Folder Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Add a row for each folder here -->
+        {{{html}}}
+
+    </tbody>
+</table>
+<div class="row mt-5" id="image-container">
+</div>
+<script>
+    let folders = document.querySelectorAll('.folder')
+    folders.forEach(folder => {
+        folder.onclick = function() {
+            fetch(`http://localhost:3000/${this.innerHTML}`)
+                .then(response => response.json())
+                .then(images => {
+                    // Hiển thị danh sách các hình ảnh trên trang
+                    const imageHtml = images.map(image => {
+                        return `<div class= "col-3 mt-3" ><img src="${this.innerHTML}/${image}" class="img-thumbnail"></div>`;
+                    }).join('');
+                    document.getElementById('image-container').innerHTML = imageHtml;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    })
+</script>
